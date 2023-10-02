@@ -71,7 +71,7 @@ int registrar() //Função responsável pelo cadastro de usuários no sistema
 	if (opcao == 'S' || opcao == 's') //Condicional que determina a ação a ser tomada com base na opção do usuário
 		return registrar(); //Retorna ao início da função
 	else //Condicional que determina a ação a ser tomada caso a opção do usuário seja diferente da determinada em IF
-		return 0; //Retorna à função principal
+		return 0; //Retorna ao valor zero (quebra laço, quebra função, quebra tudo)
 	
 } //Fim da função registrar
 
@@ -138,7 +138,7 @@ int deletar() //Função responsável pela exclusão de usuários no sistema
 	{
 		printf("\nO usuário não pôde ser localizado.\n\n"); //Mensagem ao usuário
 		system("pause"); //Pausa a tela
-		return 0;
+		return 0; //Retorna ao valor zero
 	} //Final da ação condicional
 	
 	else //Determina ação condicional
@@ -165,7 +165,7 @@ int deletar() //Função responsável pela exclusão de usuários no sistema
 			if (opcao=='S'||opcao=='s') //Determina ação condicional
 				return deletar(); //Retorna ao início da função
 			else //Determina ação condicional
-				return 0; //Retorna à função principal
+				return 0; //Retorna ao valor zero
 			system("pause"); //Pausa a tela
 			break; 
 			//Final do case
@@ -204,7 +204,8 @@ int main() //Função principal do software
 		printf("Escolha a opção desejada do menu:\n\n");
 		printf("\t1 - Registrar nomes\n");
 		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n\n"); 
+		printf("\t3 - Deletar nomes\n");
+		printf("\t4 - Sair do sistema\n\n");
 		printf("Opção: "); 
 		//Fim do menu
 	
@@ -227,11 +228,16 @@ int main() //Função principal do software
 			deletar(); //Chamada de funções
 			break; //Fim da opção
 			
+			case 4: //Início da opção
+			printf("Obrigado por utilizar o sistema!\n"); //Mensagem ao usuário
+			return 0; //Retorna ao valor zero
+			break; //Início da opção
+			
 			default: //Função padrão quando o comando do usuário não se encontra nas opções
 			printf("Essa opção não está disponível\n"); //Mensagem ao usuário
 			system("pause"); //Pausa a tela
 			break; //Fim do comando
 		} //Fim da seleção do menu
-	}//Fim do laço
+	} //Fim do laço
 	
 } //Fim da função principal
