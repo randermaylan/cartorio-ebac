@@ -231,7 +231,7 @@ int main() //Função principal do software
 			case 4: //Início da opção
 			printf("Obrigado por utilizar o sistema!\n"); //Mensagem ao usuário
 			return 0; //Retorna ao valor zero
-			break; //Início da opção
+			break; //Fim da opção
 			
 			default: //Função padrão quando o comando do usuário não se encontra nas opções
 			printf("Essa opção não está disponível\n"); //Mensagem ao usuário
