@@ -104,6 +104,7 @@ int consultar() //Função responsável pela consulta de usuários no sistema
 	{
 		printf("%s",conteudo); //Exibe ao usuário as informações encontradas
 	} //Final da ação condicional
+	fclose(file); //Fecha o arquivo
 	
 	printf("Deseja consultar outro usuário? S ou N?\n\n"); //Coletando informações do usuário
 	scanf(" %c", &opcao); //Salva a resposta do usuário na variável opção
@@ -116,8 +117,7 @@ int consultar() //Função responsável pela consulta de usuários no sistema
 		return 0; //Final da ação condicional
 	
 	system("pause"); //Pausa a tela
-	fclose(file); //Fecha o arquivo
-	
+		
 } //Fim da função consultar
 
 int deletar() //Função responsável pela exclusão de usuários no sistema
@@ -146,15 +146,16 @@ int deletar() //Função responsável pela exclusão de usuários no sistema
 		{
 			printf("%s",conteudo); //Exibe ao usuário as informações encontradas
 		} //Final da ação condicional
+		fclose(file); //Fecha o arquivo
 		printf("Tem certeza que deseja deletar este usuário? S ou N? \n\n"); //Coletando informações do usuário
 		scanf(" %c",&opcao); //Salva a resposta do usuário na variável opção
+		
 		
 		switch (opcao) //Determina ação condicional
 		{
 			//Início do case
 			case 'S': //Compara resposta do usuário
 			case 's': //Compara resposta do usuário
-			fclose(file); //Fecha o arquivo
 			remove(cpf); //Deleta o arquivo
 			printf("\nO usuário foi deletado com sucesso.\n\n\n"); //Mensagem ao usuário
 			printf("Deseja deletar outro usuário? S ou N?\n\n"); //Coletando informações do usuário
@@ -162,13 +163,14 @@ int deletar() //Função responsável pela exclusão de usuários no sistema
 			printf("\n"); //Espaço-linha
 			system("cls"); //Limpa a tela
 			
+						
 			if (opcao=='S'||opcao=='s') //Determina ação condicional
 				return deletar(); //Retorna ao início da função
 			else //Determina ação condicional
 				return 0; //Retorna ao valor zero
-			system("pause"); //Pausa a tela
-			break; 
-			//Final do case
+				system("pause"); //Pausa a tela
+				break; 
+				//Final do case
 			
 			//Início do case
 			case 'N': //Compara resposta do usuário
@@ -191,53 +193,69 @@ int main() //Função principal do software
 {
 	int opcao=0; //Definindo variáveis
 	int laco=1; //Definindo variáveis em loop
+	char senhadigitada[10]="a";
+	int comparacao;
 	
-	for (laco=1;laco=1;) //Determina ação a ser seguida para a variável indicada
+	setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
+	
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Login de administrador\n\n Digite a sua senha: ");
+	scanf("%s",senhadigitada);
+	printf("\n");
+	
+	comparacao = strcmp(senhadigitada, "admin");
+		
+	if(comparacao == 0)
 	{
-		
-		system("cls"); //Limpa a tela	
-		
-		setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
-	
-		 //Início do menu
-		printf("### Cartório da EBAC ###\n\n");
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n");
-		printf("\t4 - Sair do sistema\n\n");
-		printf("Opção: "); 
-		//Fim do menu
-	
-		scanf("%d", &opcao); //Armazenando a escolha do usuário na string
-	
-		system("cls"); //Limpa a tela
-		
-		//Início da seleção do menu
-		switch(opcao)
+		for (laco=1;laco=1;) //Determina ação a ser seguida para a variável indicada
 		{
-			case 1: //Início da opção
-			registrar(); //Chamada de funções
-			break; //Fim da opção
+			system("cls"); //Limpa a tela	
+		
+			setlocale(LC_ALL, "Portuguese"); //Definindo a linguagem
+	
+			//Início do menu
+			printf("### Cartório da EBAC ###\n\n");
+			printf("Escolha a opção desejada do menu:\n\n");
+			printf("\t1 - Registrar nomes\n");
+			printf("\t2 - Consultar nomes\n");
+			printf("\t3 - Deletar nomes\n");
+			printf("\t4 - Sair do sistema\n\n");
+			printf("Opção: "); 
+			//Fim do menu
+	
+			scanf("%d", &opcao); //Armazenando a escolha do usuário na string
+			system("cls"); //Limpa a tela
+		
+			//Início da seleção do menu
+			switch(opcao)
+			{
+				case 1: //Início da opção
+				registrar(); //Chamada de funções
+				break; //Fim da opção
 			
-			case 2: //Início da opção
-			consultar(); //Chamada de funções
-			break; //Fim da opção
+				case 2: //Início da opção
+				consultar(); //Chamada de funções
+				break; //Fim da opção
+				
+				case 3: //Início da opção
+				deletar(); //Chamada de funções
+				break; //Fim da opção
 			
-			case 3: //Início da opção
-			deletar(); //Chamada de funções
-			break; //Fim da opção
+				case 4: //Início da opção
+				printf("Obrigado por utilizar o sistema!\n"); //Mensagem ao usuário
+				return 0; //Retorna ao valor zero
+				break; //Fim da opção
 			
-			case 4: //Início da opção
-			printf("Obrigado por utilizar o sistema!\n"); //Mensagem ao usuário
-			return 0; //Retorna ao valor zero
-			break; //Fim da opção
+				default: //Função padrão quando o comando do usuário não se encontra nas opções
+				printf("Essa opção não está disponível\n"); //Mensagem ao usuário
+				system("pause"); //Pausa a tela
+				break; //Fim do comando
+			} //Fim da seleção do menu
 			
-			default: //Função padrão quando o comando do usuário não se encontra nas opções
-			printf("Essa opção não está disponível\n"); //Mensagem ao usuário
-			system("pause"); //Pausa a tela
-			break; //Fim do comando
-		} //Fim da seleção do menu
-	} //Fim do laço
+			printf("Este software é de uso exclusivo e pessoal de Rander Maylan Costa para o curso TI do Zero ao Pro da EBAC.");
+		} //Fim do laço
+	}
+	else
+		printf("Senha incorreta\n");
 	
 } //Fim da função principal
